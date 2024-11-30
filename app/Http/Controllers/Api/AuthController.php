@@ -42,12 +42,12 @@ class AuthController extends Controller
 
         // Si todas las validaciones pasan, generar el token de acceso
         try {
-            $tokenResult = $user->createToken('Personal Access Token');
+            $tokenResult = $user->createToken('access_token');
             $token = $tokenResult->accessToken;
 
             return response()->json([
                 'user' => $user,
-                'role' => $user->role->name,
+                // 'role' => $user->role->name,
                 'access_token' => $token,
                 'token_type' => 'Bearer',
                 'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
